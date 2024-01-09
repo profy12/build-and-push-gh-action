@@ -35,3 +35,4 @@ runs:
     - name: push image
       run: |
         docker push ${{ inputs.registry }}/${{ github.repository }}/${{ inputs.image-name }}
+      shell: bash
