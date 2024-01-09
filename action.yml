@@ -27,12 +27,20 @@ runs:
         docker login ${{ inputs.registry }} -u ${{ inputs.username }} -p ${{ inputs.password }} 
       shell: bash
 
+    - name: Test just output the message
+      uses: profy12/lowercase-action@0.6
+      id: lowered
+      with:
+        text: ${{ github.repository }}
+    - name: Debug our lowered text message
+      run: echo "${{ steps.lowered.outputs.text }}"
+
     - name: build image
       run: |
-        docker build -t ${{ inputs.registry }}/${{ github.repository }}/${{ inputs.image-name }} .
+        docker build -t ${{ inputs.registry }}/${{ steps.lowered.outputs.text }}/${{ inputs.image-name }} .
       shell: bash
 
     - name: push image
       run: |
-        docker push ${{ inputs.registry }}/${{ github.repository }}/${{ inputs.image-name }}
+        docker push ${{ inputs.registry }}/${{ steps.lowered.outputs.text }}/${{ inputs.image-name }}
       shell: bash
