@@ -29,5 +29,9 @@ runs:
 
     - name: build image
       run: |
-        docker build -t ghcr.io/${{ github.repository }}/${{ inputs.image-name }} .
+        docker build -t ${{ inputs.registry }}/${{ github.repository }}/${{ inputs.image-name }} .
       shell: bash
+
+    - name: push image
+      run: |
+        docker push ${{ inputs.registry }}/${{ github.repository }}/${{ inputs.image-name }}
