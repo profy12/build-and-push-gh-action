@@ -1,11 +1,13 @@
 name: 'build-and-push-to-gh'
 description: 'build and push a docker image'
-env:
-  DOCKER_REGISTRY: ghcr.io
 inputs:
   image-name: 
     description: 'name of the docker image'
     required: true
+  registry:
+    description: 'where to push image'
+    default: ghcr.io
+    required: false
   username:
     description: 'username to login to registry'
   password:
@@ -22,7 +24,7 @@ runs:
   steps:
     - name: login to registry
       run: |
-        docker login ${{ env.DOCKER_REGISTRY }} -u ${{ inputs.username }} -p ${{ inputs.password }} 
+        docker login ${{ inputs.registry }} -u ${{ inputs.username }} -p ${{ inputs.password }} 
       shell: bash
 
     - name: build image
