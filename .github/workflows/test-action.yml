@@ -1,0 +1,21 @@
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    name: A test job build and push docker
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 1
+    - name: Test just output the message
+      uses: ./
+      with:
+        image-name: monimage
+        username: profy12
+        password: ${{ secrets.GITHUB_TOKEN }}

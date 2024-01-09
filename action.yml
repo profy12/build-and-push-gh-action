@@ -1,0 +1,25 @@
+name: 'build-and-push-to-gh'
+description: 'build and push a docker image'
+inputs:
+  image-name: 
+    description: 'name of the docker image'
+    required: true
+  username:
+    description: 'username to login to registry'
+  password:
+    description: 'token to login'
+branding:
+  icon: chevron-down
+  color: gray-dark
+#outputs:
+#  text:
+#    description: 'The text in lower case'
+#    value: ${{ steps.lower-step.outputs.text }}
+runs:
+  using: "composite"
+  steps:
+    - name: Start to lower text ${{ inputs.text }}
+      run: |
+        docker login -u ${{ inputs.username }} -p ${{ inputs.password }} 
+      shell: bash
+
