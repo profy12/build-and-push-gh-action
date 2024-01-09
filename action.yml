@@ -20,6 +20,6 @@ runs:
   steps:
     - name: Start to lower text ${{ inputs.text }}
       run: |
-        docker login ghcr.io-u ${{ inputs.username }} -p ${{ inputs.password }} 
+        docker login ghcr.io -u ${{ inputs.username }} -p ${{ inputs.password }} 
       shell: bash
 
