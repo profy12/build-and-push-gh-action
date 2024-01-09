@@ -1,5 +1,7 @@
 name: 'build-and-push-to-gh'
 description: 'build and push a docker image'
+env:
+  DOCKER_REGISTRY: ghcr.io
 inputs:
   image-name: 
     description: 'name of the docker image'
@@ -17,8 +19,6 @@ branding:
 #    value: ${{ steps.lower-step.outputs.text }}
 runs:
   using: "composite"
-  env:
-    DOCKER_REGISTRY: ghcr.io
   steps:
     - name: login to registry
       run: |
