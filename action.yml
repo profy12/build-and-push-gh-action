@@ -32,8 +32,6 @@ runs:
       id: lowered
       with:
         text: ${{ github.repository }}
-    - name: Debug our lowered text message
-      run: echo "${{ steps.lowered.outputs.text }}"
 
     - name: build image
       run: |
