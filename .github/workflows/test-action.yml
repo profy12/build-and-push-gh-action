@@ -13,9 +13,9 @@ jobs:
       uses: actions/checkout@v4
       with:
         fetch-depth: 1
-    - name: Test just output the message
+    - name: login to registry
       uses: ./
       with:
         image-name: monimage
-        username: profy12
+        username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
