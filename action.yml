@@ -18,8 +18,12 @@ branding:
 runs:
   using: "composite"
   steps:
-    - name: Start to lower text ${{ inputs.text }}
+    - name: login to registry
       run: |
         docker login ghcr.io -u ${{ inputs.username }} -p ${{ inputs.password }} 
       shell: bash
 
+    - name: build image
+      run: |
+        docker build -t ${{ github.repository }}/${{ inputs.image-name }} .
+      shell: bash
